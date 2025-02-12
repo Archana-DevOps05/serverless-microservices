@@ -84,3 +84,5 @@ Deploy a fully serverless microservice that performs CRUD (Create, Read, Update,
 ![Screenshot from 2025-02-12 12-56-48](https://github.com/user-attachments/assets/76be0a6c-5eca-4a02-ac79-1d8cc21bdc36)
 
 ![Screenshot from 2025-02-13 00-53-06](https://github.com/user-attachments/assets/71fa0b68-e100-4e9f-8081-ba9026a49ad4)
+
+![Screenshot from 2025-02-12 14-27-34](https://github.com/user-attachments/assets/64b4bfd1-97f6-4536-a3e5-7c0e702546a4)
