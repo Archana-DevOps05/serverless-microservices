@@ -49,3 +49,23 @@ Deploy a fully serverless microservice that performs CRUD (Create, Read, Update,
     sudo apt install docker.io
     docker --version
     sudo usermod -aG docker $USER && newgrp docker
+
+#### Step 1: Create Directory and change the Directory
+    mkdir serverless-microservice
+    cd serverless-microservice
+    sam init --runtime nodejs18.x
+
+#### Step 2: Step 2: Define Lambda Function Code
+    nano hello-world.js
+
+#### Step 3: Define API Gateway and DynamoDB Resources
+    nano template.yaml
+
+#### Step 4: Build and Deploy
+ 1. Build your SAM application:
+    
+    sam build
+
+2. Deploy your application (this will prompt you to configure AWS credentials if needed):
+
+    sam deploy --guided
