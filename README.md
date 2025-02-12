@@ -69,3 +69,6 @@ Deploy a fully serverless microservice that performs CRUD (Create, Read, Update,
 2. Deploy your application (this will prompt you to configure AWS credentials if needed):
 
     sam deploy --guided
+
+   
+![image](https://github.com/user-attachments/assets/a2c76aa4-3ccf-42ee-817a-e9f3bd3727d7)
