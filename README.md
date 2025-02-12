@@ -72,3 +72,15 @@ Deploy a fully serverless microservice that performs CRUD (Create, Read, Update,
 
    
 ![image](https://github.com/user-attachments/assets/a2c76aa4-3ccf-42ee-817a-e9f3bd3727d7)
+
+###### Go to AWS CloudFormation Console under your stack (my-dynamo-lambda-stack).
+
+- Go to the Outputs tab of the CloudFormation stack.
+- Find the MicroserviceApiURL and copy that value. 
+
+    https://n5pqhifhn9.execute-api.us-east-1.amazonaws.com/prod/hello
+
+  
+![Screenshot from 2025-02-12 12-56-48](https://github.com/user-attachments/assets/76be0a6c-5eca-4a02-ac79-1d8cc21bdc36)
+
+![Screenshot from 2025-02-13 00-53-06](https://github.com/user-attachments/assets/71fa0b68-e100-4e9f-8081-ba9026a49ad4)
