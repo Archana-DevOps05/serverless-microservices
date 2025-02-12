@@ -1,0 +1,104 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Resources:
+  ApiGateway:
+    Type: 'AWS::Serverless::Api'
+    Properties:
+      Name: 'MicroserviceApi'
+      StageName: 'prod'
+
+  CrudLambdaFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: 'hello-world.app.createItem'
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 5
+      Events:
+        CreateApiEvent:
+          Type: Api
+          Properties:
+            Path: '/item'
+            Method: POST
+            RestApiId: !Ref ApiGateway
+
+  GetItemLambdaFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: 'hello-world.app.getItem'
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 5
+      Events:
+        GetApiEvent:
+          Type: Api
+          Properties:
+            Path: '/item/{id}'
+            Method: GET
+            RestApiId: !Ref ApiGateway
+
+  UpdateItemLambdaFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: 'hello-world.app.updateItem'
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 5
+      Events:
+        UpdateApiEvent:
+          Type: Api
+          Properties:
+            Path: '/item/{id}'
+            Method: PUT
+            RestApiId: !Ref ApiGateway
+
+  DeleteItemLambdaFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: 'hello-world.app.deleteItem'
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 5
+      Events:
+        DeleteApiEvent:
+          Type: Api
+          Properties:
+            Path: '/item/{id}'
+            Method: DELETE
+            RestApiId: !Ref ApiGateway
+
+  HelloLambdaFunction:  # New Lambda function for the /hello endpoint
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: 'hello-world.app.hello'  # You will need to create a 'hello' function in your code
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 5
+      Events:
+        HelloApiEvent:
+          Type: Api
+          Properties:
+            Path: '/hello'  # The /hello endpoint
+            Method: GET  # This will trigger a GET request to /hello
+            RestApiId: !Ref ApiGateway
+
+  DynamoDBTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: 'Item-table'
+      AttributeDefinitions:
+        - AttributeName: 'id'
+          AttributeType: 'S'
+      KeySchema:
+        - AttributeName: 'id'
+          KeyType: 'HASH'
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+Outputs:
+  MicroserviceApiURL:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/prod"
+
